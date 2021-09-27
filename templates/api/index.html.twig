@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ApiController!{% endblock %}
+
+{% block body %}
+    <div class="form mt-5">
+        <label for="course">Course: </label>
+        <input type="text" class="input" name="course" id="course">
+        <input type="submit" onclick="envoyer()" value="Enregistrer">
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script type="application/javascript">
+        function envoyer(){
+            let url = 'http://localhost/__symfony/liste-de-courses/public/api/course';
+            let body = {nom: document.getElementById('course').value};
+            axios.post(url, body)
+            .then(function (response) {
+                console.log(response);
+            })
+            .then(function (error) {
+                console.log(error);
+            });
+        }
+    </script>
+{% endblock %}
